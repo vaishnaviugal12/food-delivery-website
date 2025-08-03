@@ -1,6 +1,12 @@
 import React from 'react'
 import './Nbar.css'
 import {assets} from '../../assets/assets';
+ const logout = ()=>{
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/");
+
+    }
 const Nbar = () => {
   return (
     <div className='navbar'>
