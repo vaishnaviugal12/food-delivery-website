@@ -16,7 +16,7 @@ const PORT = process.env.PORT;
 //middleware
 app.use(express.json())
 const allowedOrigins = [
-  'http://localhost:5173',
+  'https://food-delivery-website-nine-theta.vercel.app/',
   'https://food-delivery-website-zwz8.onrender.com' // replace with actual Render frontend URL
 ];
  //using this we can acess bakend from any frontend
