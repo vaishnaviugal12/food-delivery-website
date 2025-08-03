@@ -9,7 +9,7 @@ import axios from "axios";
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [foodList, setFoodList] = useState([]);
-  const url = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  const url = import.meta.env.VITE_API_URL;
 
   // Add item to cart
   const addToCart = async (itemId) => {

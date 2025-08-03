@@ -11,11 +11,25 @@ import OrderRouter from "./routes/orderRouter.js";
 //app config
 
 const app=express()
-const port =4000
+const PORT = process.env.PORT;
 
 //middleware
 app.use(express.json())
-app.use(cors()) //using this we can acess bakend from any frontend
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://food-delivery-website-zwz8.onrender.com' // replace with actual Render frontend URL
+];
+ //using this we can acess bakend from any frontend
+
+ app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 
 //db connection
 connectDB();
@@ -40,8 +54,8 @@ app.get("/",(req,res)=>{
    res.send("API Working")
 })
 
-app.listen(port,()=>{
-  console.log(`server started on http://localhost:${port}`)
+app.listen(PORT,()=>{
+  console.log(`server started on http://localhost:${PORT}`);
 })
 
 
