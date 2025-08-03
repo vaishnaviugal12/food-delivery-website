@@ -50,7 +50,7 @@ const LoginPopup = ({ setShowLogin }) => {
 
       if (response.data.role === "admin") {
         // redirect to admin app (separate folder on different port or domain)
-        window.location.href = import.meta.env.VITE_API_URL; // change this to your actual admin URL
+        window.location.href = " http://localhost:5174"; // change this to your actual admin URL
       } else {
         navigate("/");
       }
