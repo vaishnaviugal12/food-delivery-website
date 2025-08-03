@@ -11,25 +11,14 @@ import OrderRouter from "./routes/orderRouter.js";
 //app config
 
 const app=express()
-const PORT = process.env.PORT;
+const port =process.env.PORT ||4000;
 
-
-app.use(
-  cors({
-    origin: "https://food-delivery-website-nine-theta.vercel.app",
-    credentials: true,
-  })
-);
 //middleware
 app.use(express.json())
-
+app.use(cors()) //using this we can acess bakend from any frontend
 
 //db connection
 connectDB();
-
-app.listen(PORT,()=>{
-  console.log(`server started on http://localhost:${PORT}`);
-})
 
 //api endpoint
 //for food
@@ -51,10 +40,9 @@ app.get("/",(req,res)=>{
    res.send("API Working")
 })
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: err.message });
-});
+app.listen(port,()=>{
+  console.log(`server started on http://localhost:${port}`)
+})
 
 
 
