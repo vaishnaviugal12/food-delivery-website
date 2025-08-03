@@ -12,7 +12,7 @@ import OrderRouter from "./routes/orderRouter.js";
 
 const app=express()
 const PORT = process.env.PORT;
-const cors = require("cors");
+
 
 const allowedOrigins = [
   "https://food-delivery-website-nine-theta.vercel.app/", //  Replace with your actual Vercel URL
