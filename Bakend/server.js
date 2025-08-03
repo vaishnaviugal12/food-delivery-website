@@ -14,30 +14,22 @@ const app=express()
 const PORT = process.env.PORT;
 
 
-const allowedOrigins = [
-  "https://food-delivery-website-nine-theta.vercel.app",
-  "http://localhost:5173"
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true
+    origin: "https://food-delivery-website-nine-theta.vercel.app",
+    credentials: true,
   })
 );
-
 //middleware
 app.use(express.json())
 
 
 //db connection
 connectDB();
+
+app.listen(PORT,()=>{
+  console.log(`server started on http://localhost:${PORT}`);
+})
 
 //api endpoint
 //for food
@@ -59,9 +51,10 @@ app.get("/",(req,res)=>{
    res.send("API Working")
 })
 
-app.listen(PORT,()=>{
-  console.log(`server started on http://localhost:${PORT}`);
-})
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: err.message });
+});
 
 
 
