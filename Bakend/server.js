@@ -15,8 +15,8 @@ const PORT = process.env.PORT;
 
 
 const allowedOrigins = [
-  "https://food-delivery-website-nine-theta.vercel.app/", //  Replace with your actual Vercel URL
-  "http://localhost:5173"             // Optional: for local testing
+  "https://food-delivery-website-nine-theta.vercel.app",
+  "http://localhost:5173"
 ];
 
 app.use(
