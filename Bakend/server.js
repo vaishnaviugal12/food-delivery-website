@@ -12,24 +12,29 @@ import OrderRouter from "./routes/orderRouter.js";
 
 const app=express()
 const PORT = process.env.PORT;
+const cors = require("cors");
+
+const allowedOrigins = [
+  "https://food-delivery-website-nine-theta.vercel.app/", //  Replace with your actual Vercel URL
+  "http://localhost:5173"             // Optional: for local testing
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true
+  })
+);
 
 //middleware
 app.use(express.json())
-const allowedOrigins = [
-  'https://food-delivery-website-nine-theta.vercel.app/',
-  'https://food-delivery-website-zwz8.onrender.com' // replace with actual Render frontend URL
-];
- //using this we can acess bakend from any frontend
 
- app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
 
 //db connection
 connectDB();
